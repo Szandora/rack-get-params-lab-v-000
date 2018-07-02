@@ -7,9 +7,9 @@ class Application
     resp = Rack::Response.new
     req = Rack::Request.new(env)
 
-    if req.path.match(/items/)
-      @@items.each do |item|
-        resp.write "#{item}\n"
+    if req.path.match(/cart/)
+      if @@cart.empty?
+        resp.write "Your cart is empty"
       end
     elsif req.path.match(/search/)
       search_term = req.params["q"]
